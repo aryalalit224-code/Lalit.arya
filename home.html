@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Universe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body, html {
+  margin:0; padding:0;
+  height:100%; width:100%;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0b0c2d 0%, #1a1a3d 100%);
+  color: white;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+/* Stars background */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: twinkle 3s infinite alternate;
+}
+@keyframes twinkle {
+  0% {opacity:0.2;}
+  50% {opacity:0.8;}
+  100% {opacity:0.2;}
+}
+
+.portal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 20px;
+  z-index: 1;
+  position: relative;
+}
+
+.portal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #3b3b6b, #6b6bb3);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2), 0 0 50px rgba(107,107,179,0.4);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.portal:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 40px rgba(255,255,255,0.5), 0 0 60px rgba(107,107,179,0.7);
+  background: linear-gradient(135deg, #5b5bb3, #8b8bd3);
+}
+
+/* Back button */
+.back-btn {
+  text-align:center;
+  margin: 30px 0 50px 0;
+}
+.back-btn button {
+  padding: 12px 25px;
+  border-radius: 12px;
+  border:none;
+  cursor:pointer;
+  background: linear-gradient(45deg, #0072ff, #00c6ff);
+  color: white;
+  font-size:16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.back-btn button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00c6ff;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .portal {
+    width: 120px;
+    height: 120px;
+    font-size: 16px;
+  }
+  .portal-container {
+    gap: 25px;
+    padding: 30px 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient piano music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/10/19/audio_e4c0d3f45f.mp3?filename=gentle-piano-10846.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Stars -->
+<script>
+for(let i=0;i<80;i++){
+  let star = document.createElement('div');
+  star.classList.add('star');
+  let size = Math.random()*2+1;
+  star.style.width = size+'px';
+  star.style.height = size+'px';
+  star.style.top = Math.random()*window.innerHeight+'px';
+  star.style.left = Math.random()*window.innerWidth+'px';
+  star.style.animationDuration = (Math.random()*2+1)+'s';
+  document.body.appendChild(star);
+}
+</script>
+
+<h1 style="text-align:center; margin-top:30px; text-shadow:0 0 20px #fff;">Welcome to the Universe</h1>
+
+<div class="portal-container">
+  <a class="portal" href="poem.html">Poem</a>
+  <a class="portal" href="note.html">Note</a>
+  <a class="portal" href="qualities.html">Qualities</a>
+  <a class="portal" href="wish.html">Wish</a>
+  <a class="portal" href="games.html">Games</a>
+  <a class="portal" href="jokes.html">Jokes</a>
+</div>
+
+<div class="back-btn">
+  <button onclick="window.location.href='index.html'">Back to Countdown</button>
+</div>
+
+</body>
+</html>

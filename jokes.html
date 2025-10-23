@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jokes for Zaruu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg,#1a1a1a,#2d2d2d);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 0 10px #ff4d4d;
+}
+
+#jokeBox {
+  width: 80%;
+  max-width: 700px;
+  min-height: 120px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.5em;
+  color: #f0f0f0;
+  box-shadow: 0 0 20px #ff0000;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(45deg,#ff4d4d,#ff1a75);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 15px #ff4d4d;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #ff1a75;
+}
+
+.back-btn {
+  margin-top: 20px;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% {opacity: 0.2;}
+  100% {opacity: 1;}
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  opacity: 0.7;
+  transform: rotate(45deg);
+  animation: shooting 2s linear forwards;
+}
+
+@keyframes shooting {
+  0% {transform: translateY(0) rotate(45deg); opacity:1;}
+  100% {transform: translateY(500px) translateX(-500px) rotate(45deg); opacity:0;}
+}
+
+/* Responsive */
+@media(max-width:600px){
+  #jokeBox { font-size: 1.2rem; padding: 15px 20px; }
+  button { font-size: 1rem; padding: 12px 20px; }
+  h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<h1>Some Dark Fun for You 😈</h1>
+<div id="jokeBox">Click Next to start the fun</div>
+<button id="nextBtn">Next Joke</button>
+<div class="back-btn">
+  <button onclick="window.location.href='home.html'">Back to Home</button>
+</div>
+<script>
+const jokes = [
+  "Why did the guy stare at his bank account in despair? Because even his rupees ghosted him 👻💸",
+  "Why don’t skeletons live in Mumbai? Because the real horror is paying rent, not death 💀🏠",
+  "Why did the student sleep in class? Because life outside is already a nightmare 😵📚",
+  "Why did the guy eat roadside golgappa alone at 2 AM? Because even loneliness has a taste 🤡🥴",
+  "Indian weddings: where your happiness goes to die quietly behind the buffet table 💔🍲",
+  "Why did the guy refuse to do yoga? Because he realized flexibility won’t save him from debt or relatives 😈🧘‍♂️",
+  "Why don’t ghosts haunt Delhi? Because the air pollution already kills their vibe 💨☠️",
+  "Why did the chaiwala smile while watching politics? Because someone always ends up boiling alive while they serve tea ☕🔥",
+  "Why did the guy check his phone at 3 AM? To see how everyone’s life is going better than his 😭📱",
+  "Why did the guy eat Maggi at midnight? Because even instant noodles understand life is a horror story 🍜💀"
+];
+
+let index = 0;
+const jokeBox = document.getElementById('jokeBox');
+const nextBtn = document.getElementById('nextBtn');
+
+nextBtn.addEventListener('click', ()=>{
+  jokeBox.style.opacity = 0;
+  setTimeout(()=>{
+    jokeBox.innerText = jokes[index];
+    jokeBox.style.opacity = 1;
+    index = (index + 1) % jokes.length;
+  },400);
+});
+
+// Floating stars generator
+for(let i=0;i<50;i++){
+  const star = document.createElement('div');
+  star.classList.add('star');
+  star.style.top = Math.random()*window.innerHeight+'px';
+  star.style.left = Math.random()*window.innerWidth+'px';
+  star.style.width = Math.random()*2+1+'px';
+  star.style.height = star.style.width;
+  document.body.appendChild(star);
+}
+
+// Shooting stars
+function createShootingStar(){
+  const star = document.createElement('div');
+  star.className = 'shooting-star';
+  star.style.top = Math.random()*window.innerHeight*0.5+'px';
+  star.style.left = Math.random()*window.innerWidth+'px';
+  star.style.animationDuration = (Math.random()*1+0.5)+'s';
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(),2000);
+}
+setInterval(()=>{ if(Math.random()<0.05) createShootingStar(); }, 500);
+</script>
+
+</body>
+</html>

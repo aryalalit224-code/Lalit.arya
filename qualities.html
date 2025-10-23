@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualities</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0b0b25, #000010 90%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+  overflow-y: auto;
+}
+
+/* Title */
+h1 {
+  margin-top: 40px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-shadow: 0 0 20px #ffffff, 0 0 40px #4fc3f7;
+}
+
+/* Instruction floating text */
+.instruction {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  opacity: 0.8;
+  animation: float 3s ease-in-out infinite;
+  text-shadow: 0 0 15px #4fc3f7, 0 0 25px #1e90ff;
+}
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-6px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.8; }
+}
+
+/* Qualities boxes container */
+.qualities-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 50px;
+  z-index: 1;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+/* Box style */
+.box {
+  width: 180px;
+  height: 120px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.6s ease;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover shimmer */
+.box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: skewX(-25deg);
+  transition: 0.7s;
+}
+.box:hover::before {
+  left: 125%;
+}
+
+/* Glow when revealed */
+.box.revealed {
+  box-shadow: 0 0 25px rgba(138,180,255,0.9);
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.1);
+}
+.box span {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.6s ease;
+  display: inline-block;
+}
+.box.revealed span {
+  opacity: 1;
+  transform: scale(1.05);
+  text-shadow: 0 0 10px #4fc3f7, 0 0 20px #2196f3;
+}
+
+/* Back button */
+.back-button {
+  margin: 60px 0 40px;
+  padding: 14px 35px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(to right,#36d1dc,#5b86e5);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(91,134,229,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+  position: relative;
+}
+.back-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(91,134,229,0.9);
+}
+
+/* Star particles */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+
+<h1>Qualities</h1>
+<p class="instruction">Tap the boxes to reveal</p>
+
+<div class="qualities-container">
+  <div class="box"><span>Mature</span></div>
+  <div class="box"><span>Handles things wisely</span></div>
+  <div class="box"><span>Great basketball player</span></div>
+  <div class="box"><span>Good music taste</span></div>
+  <div class="box"><span>Calm and composed</span></div>
+  <div class="box"><span>Loyal</span></div>
+  <div class="box"><span>Supportive</span></div>
+  <div class="box"><span>Strong yet kind</span></div>
+  <div class="box"><span>Forgiving</span></div>
+  <div class="box"><span>Honest</span></div>
+  <div class="box"><span>Creative</span></div>
+</div>
+<div class="back-btn">
+  <button onclick="window.location.href='home.html'">Back to Home</button>
+</div>
+<script>
+// Reveal text on click
+document.querySelectorAll('.box').forEach(box => {
+  box.addEventListener('click', () => {
+    box.classList.toggle('revealed');
+  });
+});
+
+// Stars
+for(let i=0;i<40;i++){
+  const s = document.createElement('div');
+  s.classList.add('star');
+  s.style.left = Math.random()*window.innerWidth+'px';
+  s.style.top = Math.random()*window.innerHeight+'px';
+  s.style.animationDuration = (Math.random()*3+2)+'s';
+  document.body.appendChild(s);
+}
+</script>
+
+</body>
+</html>

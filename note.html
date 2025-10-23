@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  background: linear-gradient(160deg, #0f2027, #203a43, #2c5364);
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Floating stars */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.8;
+}
+
+@keyframes floatStar {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+/* Note container */
+.note-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  line-height: 2;
+  font-size: 1.2rem;
+  text-align: justify;
+  color: #d0e7ff;
+  animation: fadeIn 3s ease;
+}
+
+/* Highlight important words */
+.note-container span {
+  color: #00ffe0;
+  text-shadow: 0 0 10px #00ffe0;
+  font-weight: 600;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Back button */
+.back-button {
+  margin: 50px auto;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.back-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px #36d1dc;
+}
+
+/* Audio autoplay hidden */
+audio { display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="note-container">
+  <p>We are <span>friends</span> again, but once a misunderstanding pulled us apart for a year. Honestly, I wanted to reconnect, but I didn’t know how.
+ You apologized with such grace, and I was too full of <span>ego</span> and influenced wrongly to accept. 
+ See mujhe pta hai ki how it feels when someone doesn't understand you, poeple misunderstand and misjudge you, I have gone through this
+ and jyada time bhi nhi hua hain, just like a month back ,you know what I mean ,but I liked that how you still manged to be with me 
+ when it was not easy, I dont know ki tu abhi mere baare kya sochti hai ,phele kya sochti thi, and jab tu yeh padhegi toh kya sochegi.
+ But I know ki atleast you will understand what you mean to me, sayad tujhe yeh sab chizein <span> Childish</span> lage but yaar at last ,these things only matter.
+ Matlab mujhe kuch samajh mai nhi aarha tha ki kya gift du, and tujhe koi bhi gift dedu kam hai, but yeah this is some craziness, mean I dont know
+ ki if these things matter to you but mere liye bohot ,yeh chizein bhi or yeh friendship bhi. Tere saath reh kar ,baat karke and jo bhi past mai hua usse dekh kar ussey sikh kar 
+I realized how rare true forgiveness is, and how precious a friend like you is. 
+Even when I made mistakes, you remained patient, proving that our friendship matters more than anyone who left when I stopped pleasing them. 
+You are my <span>constant</span> and my support, and I am endlessly thankful for having you as my friend. Happy birthday, and may this year bring joy, laughter, and countless memories for you.</p>
+</div>
+<div class="back-btn">
+  <button onclick="window.location.href='home.html'">Back to Home</button>
+</div>
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Generate floating stars
+for(let i=0; i<60; i++){
+  const star = document.createElement('div');
+  star.classList.add('star');
+  const size = Math.random()*3 + 1 + 'px';
+  star.style.width = size;
+  star.style.height = size;
+  star.style.top = Math.random()*window.innerHeight + 'px';
+  star.style.left = Math.random()*window.innerWidth + 'px';
+  star.style.opacity = Math.random();
+  star.style.animation = `floatStar ${2+Math.random()*3}s ease-in-out infinite alternate`;
+  document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
